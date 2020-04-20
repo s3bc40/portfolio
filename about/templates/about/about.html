@@ -1,0 +1,50 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% bootstrap_css %}
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <h1>Welcome to my portfolio !</h1>
+                </div>
+                <div class="col-2">
+                    <h6>{{ now|date }}</h6>
+                </div>
+            </div>
+        </div>
+    </header>
+    <p> Hi, I am {{ person.last_name|upper }} {{ person.first_name|capfirst }}.</p>
+    <p> I am {{ person.get_person_age }} years old, i was born on the {{ person.birth_date|date:"F d, Y" }}.</p>
+    {% if person.email %}
+        <p>To contact me, please click here : <a href="mailto:{{ person.email }}" target="_top">Send Mail</a></p>
+    {% endif %}
+    <footer>
+    {% if person.is_defined_social_network %}
+        <ul>
+            {% if person.twitter %}
+                <li><a href="{{ person.twitter }}"> Twitter Link</a></li>
+            {% endif %}
+            {% if person.linkedin %}
+                <li><a href="{{ person.linkedin }}"> Linkedin Link</a></li>
+            {% endif %}
+            {% if person.github %}
+                <li><a href="{{ person.github }}"> Github Link</a></li>
+            {% endif %}
+            {% if person.instagram %}
+                <li><a href="{{ person.instagram }}"> Instagram Link</a></li>
+            {% endif %}
+            {% if person.facebook %}
+                <li><a href="{{ person.facebook }}"> Facebook Link</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+    </footer>
+    {% bootstrap_javascript jquery='full' %}
+</body>
+</html>
