@@ -2,6 +2,14 @@ from django.db import models
 from django.utils import timezone
 
 
+class Skill(models.Model):
+    """ Technical or personal/social skill acquired """
+    name = models.CharField(max_length=30)
+    fontawesome = models.CharField(max_length=30)
+    technical = models.BooleanField(verbose_name="Technical skill?")
+    personal = models.BooleanField(verbose_name="Personal skill?")
+
+
 class Person(models.Model):
     """
     Define the person concerned by the portfolio.
@@ -16,6 +24,10 @@ class Person(models.Model):
     github = models.URLField(verbose_name='GitHub URL', null=True, blank=True)
     instagram = models.URLField(verbose_name='Instragram URL', null=True, blank=True)
     facebook = models.URLField(verbose_name='Facebook URL', null=True, blank=True)
+    skills = models.ManyToManyField(Skill)
+
+    def __str__(self):
+        return self.last_name + ' ' + self.first_name
 
     def get_person_age(self):
         """
@@ -33,3 +45,51 @@ class Person(models.Model):
         :return: True if one of social network is defined
         """
         return True if self.twitter or self.linkedin or self.github or self.instagram or self.facebook else False
+
+
+class Experience(models.Model):
+    """ Define an abstract model in common of :model:`about:Experience` and :model:`about:Formation` """
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    title = models.CharField(max_length=30)
+    starting_date = models.DateField()
+    ending_date = models.DateField(null=True, blank=True)
+    resume = models.TextField()
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.title
+
+    def get_months_duration(self):
+        """
+        Allows to get the duration of work of :model:`about:Experience`.
+
+        :return: The duration of :model:`about:Experience`.
+        :rtype: basestring
+        """
+        if self.ending_date:
+            months = (self.ending_date.year - self.starting_date.year) * 12 + \
+                     self.ending_date.month - self.starting_date.month
+            return months
+        else:
+            return 0
+
+
+class Professional(Experience):
+    """
+    Define an experience linked to :model:`about:Person`.
+
+    Subclass of :model:`about:Experience`
+    """
+    company = models.CharField(max_length=30)
+
+
+class Formation(Experience):
+    """
+    Define a formation linked to :model:`about:Person`
+
+    Subclass of :model:`about:Experience`
+    """
+    institute = models.CharField(max_length=30)
+    level = models.IntegerField(verbose_name="Bachelor level")
