@@ -1,25 +1,66 @@
-{% load bootstrap4 %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% bootstrap_css %}
     <meta charset="UTF-8">
     <title>My Portfolio</title>
+    {# Get about.css #}
+    <link rel="stylesheet" href="{% static 'about/css/about.css' %}">
+    {# FontAwesome CSS DL #}
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    {# Bootstrap CSS DL #}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 </head>
 <body>
+    {% if person.is_defined_social_network %}
+        <div class="icon-bar">
+            {% if person.facebook %}
+                <a href="{{ person.facebook }}" class="facebook"><i class="fab fa-facebook"></i></a>
+            {% endif %}
+            {% if person.twitter %}
+                <a href="{{ person.twitter }}" class="twitter"><i class="fab fa-twitter"></i></a>
+            {% endif %}
+            {% if person.linkedin %}
+                <a href="{{ person.linkedin }}" class="linkedin"><i class="fab fa-linkedin"></i></a>
+            {% endif %}
+            {% if person.github %}
+                <a href="{{ person.github }}" class="github"><i class="fab fa-github"></i></a>
+            {% endif %}
+            {% if person.instagram %}
+                <a href="{{ person.instagram }}" class="instagram"><i class="fab fa-instagram"></i></a>
+            {% endif %}
+        </div>
+    {% endif %}
+
     <header>
-    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="jumbotron jumbotron-fluid bg-dark text-white-50">
       <div class="container">
-        <h1 class="display-1">Welcome to my portfolio !</h1>
+        <h1 class="display-1 text-white">Welcome to my portfolio !</h1>
         <p>Hi, I am {{ person.last_name|upper }} {{ person.first_name|capfirst }}.</p>
         <p>I am {{ person.get_person_age }} years old, i was born on the {{ person.birth_date|date:"F d, Y" }}.</p>
       </div>
     </div>
     </header>
 
-    <div class="container-fluid">
-
+    <div class="container bg-white">
+        <div class="row">
+            <h1><i class="far fa-id-badge fa-1x"></i> Professional experience</h1>
+        </div>
+        <div class="row">
+            <div class="card-deck">
+                {% for professional in person.professional_set.all %}
+                    <div class="card bg-dark border-white text-white">
+                        <div class="card-header border-white">
+                            <h5 class="card-title">{{ professional.title }}</h5>
+                            <p class="text-white-50"><b>Duration: </b>{{ professional.get_months_duration }} months</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text ">{{ professional.resume }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
     <div class="container-fluid">
@@ -29,30 +70,13 @@
     </div>
 
     <footer>
-    {% if person.is_defined_social_network %}
-        <ul>
-            {% if person.twitter %}
-                <li><a href="{{ person.twitter }}"> Twitter Link</a></li>
-            {% endif %}
-            {% if person.linkedin %}
-                <li><a href="{{ person.linkedin }}"> Linkedin Link</a></li>
-            {% endif %}
-            {% if person.github %}
-                <li><a href="{{ person.github }}"> Github Link</a></li>
-            {% endif %}
-            {% if person.instagram %}
-                <li><a href="{{ person.instagram }}"> Instagram Link</a></li>
-            {% endif %}
-            {% if person.facebook %}
-                <li><a href="{{ person.facebook }}"> Facebook Link</a></li>
-            {% endif %}
-        </ul>
-    {% endif %}
-    </footer>
 
-    {#  Get Bootstrap4  #}
-    {% bootstrap_javascript jquery='full' %}
-    {#  Get FontAwesome5  #}
-    <script src="https://kit.fontawesome.com/8d65676ac5.js" crossorigin="anonymous"></script>
+    </footer>
+    {# Get jQuery #}
+    <script type="text/javascript" src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+    {#  Get Bootstrap4 JS  #}
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    {#  Get FontAwesome5 JS #}
+    <script type="text/javascript" src="{% static 'fontawesome/js/all.min.js' %}"></script>
 </body>
 </html>

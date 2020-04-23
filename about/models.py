@@ -2,14 +2,6 @@ from django.db import models
 from django.utils import timezone
 
 
-class Skill(models.Model):
-    """ Technical or personal/social skill acquired """
-    name = models.CharField(max_length=30)
-    fontawesome = models.CharField(max_length=30)
-    technical = models.BooleanField(verbose_name="Technical skill?")
-    personal = models.BooleanField(verbose_name="Personal skill?")
-
-
 class Person(models.Model):
     """
     Define the person concerned by the portfolio.
@@ -24,7 +16,6 @@ class Person(models.Model):
     github = models.URLField(verbose_name='GitHub URL', null=True, blank=True)
     instagram = models.URLField(verbose_name='Instragram URL', null=True, blank=True)
     facebook = models.URLField(verbose_name='Facebook URL', null=True, blank=True)
-    skills = models.ManyToManyField(Skill)
 
     def __str__(self):
         return self.last_name + ' ' + self.first_name
@@ -47,16 +38,30 @@ class Person(models.Model):
         return True if self.twitter or self.linkedin or self.github or self.instagram or self.facebook else False
 
 
+class Skill(models.Model):
+    """ Technical or personal/social skill acquired """
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    fontawesome = models.CharField(max_length=30)
+    frameworks = models.TextField(null=True, blank=True)
+    libraries = models.TextField(null=True, blank=True)
+    technical = models.BooleanField(verbose_name="Technical skill?")
+
+    def __str__(self):
+        return self.name
+
+
 class Experience(models.Model):
     """ Define an abstract model in common of :model:`about:Experience` and :model:`about:Formation` """
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=60)
     starting_date = models.DateField()
     ending_date = models.DateField(null=True, blank=True)
     resume = models.TextField()
 
     class Meta:
         abstract = True
+        ordering = ['-starting_date']
 
     def __str__(self):
         return self.title
