@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 
+from math import floor
+
 
 class Person(models.Model):
     """
@@ -66,9 +68,9 @@ class Experience(models.Model):
     def __str__(self):
         return self.title
 
-    def get_months_duration(self):
+    def get_duration(self):
         """
-        Allows to get the duration of work of :model:`about:Experience`.
+        Allows to get the duration in months of work of :model:`about:Experience`.
 
         :return: The duration of :model:`about:Experience`.
         :rtype: basestring
@@ -76,9 +78,24 @@ class Experience(models.Model):
         if self.ending_date:
             months = (self.ending_date.year - self.starting_date.year) * 12 + \
                      self.ending_date.month - self.starting_date.month
-            return months
+            years = floor(months / 12)
+            months = months % 12
+            year_string = ""
+            month_string = ""
+            # Get strings to concat
+            if years > 0:
+                year_string = "{} years".format(years) if years > 1 else "{} year".format(years)
+            if months > 0:
+                month_string = "{} months".format(months) if months > 1 else "{} month".format(months)
+            # Return after if statement
+            if years == 0:
+                return month_string
+            elif months == 0:
+                return year_string
+            else:
+                return "{}, {}".format(year_string, month_string)
         else:
-            return 0
+            return "Ongoing"
 
 
 class Professional(Experience):

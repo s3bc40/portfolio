@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 </head>
 <body>
+    <!-- Nav side bar for social media -->
     {% if person.is_defined_social_network %}
         <div class="icon-bar">
             {% if person.facebook %}
@@ -32,41 +33,89 @@
         </div>
     {% endif %}
 
-    <header>
-    <div class="jumbotron jumbotron-fluid bg-dark text-white-50">
-      <div class="container">
-        <h1 class="display-1 text-white">Welcome to my portfolio !</h1>
-        <p>Hi, I am {{ person.last_name|upper }} {{ person.first_name|capfirst }}.</p>
-        <p>I am {{ person.get_person_age }} years old, i was born on the {{ person.birth_date|date:"F d, Y" }}.</p>
-      </div>
-    </div>
-    </header>
+{#    <!-- Jumbotron header -->#}
+{#    <div class="jumbotron jumbotron-fluid bg-dark text-white-50 my-0">#}
+{#      <div class="container">#}
+{#        <h1 class="display-1 text-white">Welcome to my portfolio !</h1>#}
+{#      </div>#}
+{#    </div>#}
 
-    <div class="container bg-white">
-        <div class="row">
-            <h1><i class="far fa-id-badge fa-1x"></i> Professional experience</h1>
-        </div>
-        <div class="row">
-            <div class="card-deck">
-                {% for professional in person.professional_set.all %}
-                    <div class="card bg-dark border-white text-white">
-                        <div class="card-header border-white">
-                            <h5 class="card-title">{{ professional.title }}</h5>
-                            <p class="text-white-50"><b>Duration: </b>{{ professional.get_months_duration }} months</p>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text ">{{ professional.resume }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
+    <!-- About me -->
+    <header>
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="display-1 text-black-50">Hi ! <small class="small">I am {{ person.last_name|upper }} {{ person.first_name|capfirst }}</small> </h1>
+                    <p class="text-center text-white py-5">
+                        I am {{ person.get_person_age }} years old, i was born on the {{ person.birth_date|date:"F d, Y" }}.<br>
+                        French guy from the South West Coast, I am a junior developer ! This website is powered by Django, and maintained by myself.<br>
+                        Keywords to describe my main interests : Nature, Zero Waste, Opensource!<br>
+                        {% if person.email %}
+                            To contact me, please click on the following button: <br>
+                            <a href="mailto:{{ person.email }}" target="_top" role="button" class="btn btn-outline-light mt-2">Send Mail</a>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
         </div>
+    </header>
+
+    <!-- Professional experience -->
+    <div class="container-fluid bg-profession py-5">
+        <div class="container">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <h1><i class="far fa-id-badge"></i> Professional experience</h1>
+            </div>
+            <div class="col-1"></div>
+            {% for professional in person.professional_set.all %}
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <div class="container bg-white text-dark container-experience rounded border p-5 m-4">
+                            <div class="row">
+                                <h5>{{ professional.title }}
+                                    <small class="small text-black-50">
+                                        {{ professional.company }} - {{ professional.get_duration }}
+                                    </small>
+                                </h5>
+                            </div>
+                            <div class="row">
+                                <p>{{ professional.resume }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="container-fluid">
-    {% if person.email %}
-        <p>To contact me, please click here : <a href="mailto:{{ person.email }}" target="_top">Send Mail</a></p>
-    {% endif %}
+    <!-- Formation -->
+    <div class="container-fluid bg-dark py-5">
+        <div class="container">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <h1 class="text-white"><i class="fas fa-user-graduate"></i> Formation</h1>
+            </div>
+            <div class="col-1"></div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="card-deck mt-3 ml-4">
+                        {% for formation in person.formation_set.all %}
+                            <div class="card bg-white py-3">
+                                <div class="card-body">
+                                    <h5 class="card-title pb-2"><b>{{ formation.title }} </b><small class="small text-black-50">{{ formation.institute }} - {{ formation.get_duration }}</small></h5>
+                                    <p class="card-text">{{ formation.resume }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
     </div>
 
     <footer>

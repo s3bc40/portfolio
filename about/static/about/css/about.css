@@ -1,20 +1,21 @@
 /* Fixed/sticky icon bar (vertically aligned 50% from the top of the screen) */
 .icon-bar {
-  position: fixed;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+    position: fixed;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 1;
 }
 
 /* Style the icon bar links */
 .icon-bar a {
-  display: block;
-  text-align: center;
-  padding: 16px;
-  transition: all 0.3s ease;
-  color: white;
-  font-size: 20px;
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 20px;
 }
 
 /* Style the social media icons with color, if you want */
@@ -49,4 +50,45 @@
     background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
     color: white;
+}
+
+/* Full height header */
+header {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url("../images/mountain.jpg");;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+header p {
+    font-size: 2.2vh;
+    /* Text shadow */
+    text-shadow: gray 1px 1px;
+}
+
+/* General background */
+.bg-profession {
+    background-color: #b8c6db;
+    background-image: linear-gradient(90deg, #b8c6db 0%, #f5f7fa 74%);
+}
+
+/* Container experience */
+.container-experience {
+    box-shadow: 2px 2px 10px 2px #9AABA6;
+}
+
+.container-experience h5 {
+    padding-bottom: 2vh;
+    font-weight: bolder;
+}
+
+.container-experience p {
+    font-size: 1.5vh;
+}
+
+/* Card text formation */
+.card-text {
+    font-size: 1.5vh;
 }
