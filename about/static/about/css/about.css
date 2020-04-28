@@ -52,6 +52,11 @@
     color: white;
 }
 
+.codingame {
+    background: #FBCE01;
+    color: white;
+}
+
 /* Full height header */
 header {
   height: 100vh;
@@ -75,8 +80,8 @@ header p {
 }
 
 /* Container experience */
-.container-experience {
-    box-shadow: 2px 2px 10px 2px #9AABA6;
+.container-profession {
+    box-shadow: 2px 2px 2px 2px #9AABA6;
 }
 
 .container-experience h5 {
@@ -91,4 +96,14 @@ header p {
 /* Card text formation */
 .card-text {
     font-size: 1.5vh;
+}
+
+/* Container experience */
+.container-formation {
+    box-shadow: 2px 2px 2px 2px #27231F;
+}
+
+/* Skills css */
+.more {
+    font-size: 1.2vh;
 }

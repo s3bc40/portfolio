@@ -6,11 +6,8 @@
     <title>My Portfolio</title>
     {# Get about.css #}
     <link rel="stylesheet" href="{% static 'about/css/about.css' %}">
-    {# FontAwesome CSS DL #}
-    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
-    {# Bootstrap CSS DL #}
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-</head>
+    {# Bootstrap CSS CDN #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></head>
 <body>
     <!-- Nav side bar for social media -->
     {% if person.is_defined_social_network %}
@@ -30,15 +27,11 @@
             {% if person.instagram %}
                 <a href="{{ person.instagram }}" class="instagram"><i class="fab fa-instagram"></i></a>
             {% endif %}
+            {% if person.codingame %}
+                <a href="{{ person.codingame }}" class="codingame"><i class="fas fa-code"></i></a>
+            {% endif %}
         </div>
     {% endif %}
-
-{#    <!-- Jumbotron header -->#}
-{#    <div class="jumbotron jumbotron-fluid bg-dark text-white-50 my-0">#}
-{#      <div class="container">#}
-{#        <h1 class="display-1 text-white">Welcome to my portfolio !</h1>#}
-{#      </div>#}
-{#    </div>#}
 
     <!-- About me -->
     <header>
@@ -60,6 +53,50 @@
         </div>
     </header>
 
+    <!-- Skills -->
+    <div class="container-fluid bg-profession py-5">
+        <div class="container">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <h1><i class="fas fa-laptop-code"></i> Skills</h1>
+            </div>
+            <div class="col-1"></div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center">
+                {% for skill in person.skill_set.all %}
+                    <div class="text-center col py-3">
+                        <i class="{{ skill.fontawesome }} fa-6x text-black-50"></i>
+                        <h5 class="pt-2">{{ skill.name }}</h5>
+                        {% if skill.frameworks or skill.libraries or skill.others %}
+                            <a class="text-black-50" data-toggle="collapse" href="#skill-{{ skill.name }}">
+                                More
+                            </a>
+                            <div id="skill-{{ skill.name }}" class="container collapse text-black-50">
+                                <div class="row-cols-1 pt-2">
+                                    {% if skill.frameworks %}
+                                        <div class="more pb-2">
+                                            <b>Framework(s): </b>{{ skill.frameworks }}
+                                        </div>
+                                    {% endif %}
+                                    {% if skill.libraries %}
+                                        <div class="more pb-2">
+                                            <b>Libraries(s): </b>{{ skill.libraries }}
+                                        </div>
+                                    {% endif %}
+                                    {% if skill.others %}
+                                        <div class="more pb-2">
+                                            <b>Tool(s): </b>{{ skill.others }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+
+            {% endfor %}
+            </div>
+        </div>
+    </div>
     <!-- Professional experience -->
     <div class="container-fluid bg-profession py-5">
         <div class="container">
@@ -72,7 +109,7 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-10">
-                        <div class="container bg-white text-dark container-experience rounded border p-5 m-4">
+                        <div class="container bg-white text-dark container-profession rounded border p-5 m-4">
                             <div class="row">
                                 <h5>{{ professional.title }}
                                     <small class="small text-black-50">
@@ -104,7 +141,7 @@
                 <div class="col-10">
                     <div class="card-deck mt-3 ml-4">
                         {% for formation in person.formation_set.all %}
-                            <div class="card bg-white py-3">
+                            <div class="card bg-white py-2 container-formation">
                                 <div class="card-body">
                                     <h5 class="card-title pb-2"><b>{{ formation.title }} </b><small class="small text-black-50">{{ formation.institute }} - {{ formation.get_duration }}</small></h5>
                                     <p class="card-text">{{ formation.resume }}</p>
@@ -121,11 +158,10 @@
     <footer>
 
     </footer>
-    {# Get jQuery #}
-    <script type="text/javascript" src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
-    {#  Get Bootstrap4 JS  #}
-    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
-    {#  Get FontAwesome5 JS #}
-    <script type="text/javascript" src="{% static 'fontawesome/js/all.min.js' %}"></script>
-</body>
+    {#  Get Bootstrap4 JS CDN  #}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {#  Get FontAwesome5 JS Kit #}
+    <script src="https://kit.fontawesome.com/8d65676ac5.js" crossorigin="anonymous"></script></body>
 </html>

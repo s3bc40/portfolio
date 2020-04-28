@@ -18,6 +18,7 @@ class Person(models.Model):
     github = models.URLField(verbose_name='GitHub URL', null=True, blank=True)
     instagram = models.URLField(verbose_name='Instragram URL', null=True, blank=True)
     facebook = models.URLField(verbose_name='Facebook URL', null=True, blank=True)
+    codingame = models.URLField(verbose_name='Codingame URL', null=True, blank=True)
 
     def __str__(self):
         return self.last_name + ' ' + self.first_name
@@ -44,10 +45,14 @@ class Skill(models.Model):
     """ Technical or personal/social skill acquired """
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
-    fontawesome = models.CharField(max_length=30)
+    fontawesome = models.CharField(max_length=60)
     frameworks = models.TextField(null=True, blank=True)
     libraries = models.TextField(null=True, blank=True)
+    others = models.TextField(null=True, blank=True)
     technical = models.BooleanField(verbose_name="Technical skill?")
+
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         return self.name
