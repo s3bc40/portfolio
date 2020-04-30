@@ -20,22 +20,22 @@
 
 /* Style the social media icons with color, if you want */
 .icon-bar a:hover {
-  background-color: #000;
+    background-color: #000;
 }
 
 .facebook {
-  background: #3B5998;
-  color: white;
+    background: #3B5998;
+    color: white;
 }
 
 .twitter {
-  background: #55ACEE;
-  color: white;
+    background: #55ACEE;
+    color: white;
 }
 
 .linkedin {
-  background: #007bb5;
-  color: white;
+    background: #007bb5;
+    color: white;
 }
 
 .github {
@@ -46,9 +46,9 @@
 .instagram {
     background: #f09433;
     background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
     color: white;
 }
 
@@ -59,12 +59,12 @@
 
 /* Full height header */
 header {
-  height: 100vh;
-  min-height: 500px;
-  background-image: url("../images/mountain.jpg");;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    height: 100vh;
+    min-height: 500px;
+    background-image: url("../images/mountain.jpg");;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 header p {
@@ -106,4 +106,13 @@ header p {
 /* Skills css */
 .more {
     font-size: 1.2vh;
+}
+
+/* Carousel */
+.bg-carousel {
+    background-color:rgba(0, 0, 0, 0.7);
+}
+
+.carousel-caption p {
+    font-size: 1.5vh;
 }
