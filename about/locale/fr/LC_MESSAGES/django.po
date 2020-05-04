@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-04 19:25+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: about/models.py:93
+msgid "years"
+msgstr ""
+
+#: about/models.py:93
+msgid "year"
+msgstr ""
+
+#: about/models.py:95
+msgid "months"
+msgstr ""
+
+#: about/models.py:95
+msgid "month"
+msgstr ""
+
+#: about/models.py:104
+msgid "Ongoing"
+msgstr ""
+
+#: about/templates/about/about.html:8
+msgid "My Portfolio"
+msgstr ""
+
+#: about/templates/about/about.html:47
+msgid "Hi!"
+msgstr ""
+
+#: about/templates/about/about.html:49
+msgid "I am"
+msgstr ""
+
+#: about/templates/about/about.html:53
+#, python-format
+msgid ""
+" I am %(person.get_person_age)s years old, i was born on the "
+"%(person.birth_date|date:\"F d, Y\")s "
+msgstr ""
+
+#: about/templates/about/about.html:54
+msgid "French guy from the South West Coast, I am a junior developer !"
+msgstr ""
+
+#: about/templates/about/about.html:56
+msgid ""
+"Keywords to describe my main interests : Environment, Gaming, Opensource!"
+msgstr ""
+
+#: about/templates/about/about.html:58
+msgid "To contact me, please click on the following button:"
+msgstr ""
+
+#: about/templates/about/about.html:60
+msgid "Send Mail"
+msgstr ""
+
+#: about/templates/about/about.html:73
+msgid "Skills"
+msgstr ""
+
+#: about/templates/about/about.html:83
+msgid "More"
+msgstr ""
+
+#: about/templates/about/about.html:94
+msgid "Libraries(s):"
+msgstr ""
+
+#: about/templates/about/about.html:99
+msgid "Tool(s):"
+msgstr ""
+
+#: about/templates/about/about.html:116
+msgid "Interests"
+msgstr ""
+
+#: about/templates/about/about.html:129
+msgid "Environment"
+msgstr ""
+
+#: about/templates/about/about.html:131
+msgid ""
+"As there is no planet B, I give a special care about environment. This "
+"interest drives me to improve in Zero Waste actions, but also to appreciate "
+"the nature during my hiking sessions. To appreciate our environment, we need "
+"to respect it first !"
+msgstr ""
+
+#: about/templates/about/about.html:142
+msgid "Gaming"
+msgstr ""
+
+#: about/templates/about/about.html:144
+msgid ""
+"Gaming has an incredible power to assemble people together. This why we have "
+"a great community, full of differences but under the same passion. Truth to "
+"be told, if you want to be a good gamer, you need to have a strong sense of "
+"teamplay!"
+msgstr ""
+
+#: about/templates/about/about.html:155
+msgid "Opensource"
+msgstr ""
+
+#: about/templates/about/about.html:157
+msgid ""
+"A huge part of my knowledge about coding is due to the opensource community. "
+"It allows to share knowledge freely between every programmers, without "
+"judging your skills. I want to contribute of this opensource mindset."
+msgstr ""
+
+#: about/templates/about/about.html:168
+msgid "Previous"
+msgstr ""
+
+#: about/templates/about/about.html:172
+msgid "Next"
+msgstr ""
+
+#: about/templates/about/about.html:183
+msgid "Professional experience"
+msgstr ""
+
+#: about/templates/about/about.html:215
+msgid "Formation"
+msgstr ""
+
+#: about/templates/about/about.html:244
+msgid ""
+"This site is maintained with the Python Web framework Django and the CSS "
+"Framework Bootstrap."
+msgstr ""
+
+#: about/templates/about/about.html:245
+msgid "Author :"
+msgstr ""

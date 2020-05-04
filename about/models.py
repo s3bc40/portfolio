@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from math import floor
 
@@ -89,9 +90,9 @@ class Experience(models.Model):
             month_string = ""
             # Get strings to concat
             if years > 0:
-                year_string = "{} years".format(years) if years > 1 else "{} year".format(years)
+                year_string = "{} {}".format(years, _("years")) if years > 1 else "{} {}".format(years, _("year"))
             if months > 0:
-                month_string = "{} months".format(months) if months > 1 else "{} month".format(months)
+                month_string = "{} {}".format(months, _("months")) if months > 1 else "{} {}".format(months, _("month"))
             # Return after if statement
             if years == 0:
                 return month_string
@@ -100,7 +101,7 @@ class Experience(models.Model):
             else:
                 return "{}, {}".format(year_string, month_string)
         else:
-            return "Ongoing"
+            return _("Ongoing")
 
 
 class Professional(Experience):
